@@ -1,0 +1,242 @@
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-99' coro=<Connection._async_send() done, defined at /home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py:69> exception=InvalidStateError('invalid state')>
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/framing.py", line 105, in read
+    data = await reader(2)
+  File "/usr/lib/python3.8/asyncio/streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 73, in _async_send
+    await self.connection.send(msg)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 555, in send
+    await self.ensure_open()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 79, in _async_send
+    await self.dispose()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 170, in dispose
+    await self._on_close()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 151, in _on_close
+    cb.set_exception(_rewriteError(
+asyncio.exceptions.InvalidStateError: invalid state
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-99' coro=<Connection._async_send() done, defined at /home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py:69> exception=InvalidStateError('invalid state')>
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/framing.py", line 105, in read
+    data = await reader(2)
+  File "/usr/lib/python3.8/asyncio/streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 73, in _async_send
+    await self.connection.send(msg)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 555, in send
+    await self.ensure_open()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 79, in _async_send
+    await self.dispose()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 170, in dispose
+    await self._on_close()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 151, in _on_close
+    cb.set_exception(_rewriteError(
+asyncio.exceptions.InvalidStateError: invalid state
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-99' coro=<Connection._async_send() done, defined at /home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py:69> exception=InvalidStateError('invalid state')>
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/framing.py", line 105, in read
+    data = await reader(2)
+  File "/usr/lib/python3.8/asyncio/streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 73, in _async_send
+    await self.connection.send(msg)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 555, in send
+    await self.ensure_open()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 79, in _async_send
+    await self.dispose()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 170, in dispose
+    await self._on_close()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 151, in _on_close
+    cb.set_exception(_rewriteError(
+asyncio.exceptions.InvalidStateError: invalid state
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-99' coro=<Connection._async_send() done, defined at /home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py:69> exception=InvalidStateError('invalid state')>
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/framing.py", line 105, in read
+    data = await reader(2)
+  File "/usr/lib/python3.8/asyncio/streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 73, in _async_send
+    await self.connection.send(msg)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 555, in send
+    await self.ensure_open()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 79, in _async_send
+    await self.dispose()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 170, in dispose
+    await self._on_close()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 151, in _on_close
+    cb.set_exception(_rewriteError(
+asyncio.exceptions.InvalidStateError: invalid state
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-99' coro=<Connection._async_send() done, defined at /home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py:69> exception=InvalidStateError('invalid state')>
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 827, in transfer_data
+    message = await self.read_message()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 895, in read_message
+    frame = await self.read_data_frame(max_size=self.max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 971, in read_data_frame
+    frame = await self.read_frame(max_size)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 1047, in read_frame
+    frame = await Frame.read(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/framing.py", line 105, in read
+    data = await reader(2)
+  File "/usr/lib/python3.8/asyncio/streams.py", line 721, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 2 expected bytes
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 73, in _async_send
+    await self.connection.send(msg)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 555, in send
+    await self.ensure_open()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/websockets/protocol.py", line 803, in ensure_open
+    raise self.connection_closed_exc()
+websockets.exceptions.ConnectionClosedError: code = 1006 (connection closed abnormally [internal]), no reason
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 79, in _async_send
+    await self.dispose()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 170, in dispose
+    await self._on_close()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/pyppeteer/connection.py", line 151, in _on_close
+    cb.set_exception(_rewriteError(
+asyncio.exceptions.InvalidStateError: invalid state
+ERROR:sshtunnel.SSHTunnelForwarder:Could not resolve IP address for cs-linux.ncl.ac.uk, aborting!
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-73' coro=<get_js() done, defined at /home/philip/PycharmProjects/solomonidis-flask/backend/data_scrape/scraper.py:12> exception=ConnectionError(MaxRetryError("HTTPSConnectionPool(host='nationalinterest.org', port=443): Max retries exceeded with url: /blog/reboot/best-bang-your-buck-diesel-submarines-187097 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f7670201040>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))"))>
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/connection.py", line 159, in _new_conn
+    conn = connection.create_connection(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 61, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 670, in urlopen
+    httplib_response = self._make_request(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 381, in _make_request
+    self._validate_conn(conn)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 978, in _validate_conn
+    conn.connect()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/connection.py", line 309, in connect
+    conn = self._new_conn()
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/connection.py", line 171, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7f7670201040>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 726, in urlopen
+    retries = retries.increment(
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 446, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='nationalinterest.org', port=443): Max retries exceeded with url: /blog/reboot/best-bang-your-buck-diesel-submarines-187097 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f7670201040>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/data_scrape/scraper.py", line 13, in get_js
+    res = await asession.get(link)
+  File "/usr/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/philip/PycharmProjects/solomonidis-flask/backend/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='nationalinterest.org', port=443): Max retries exceeded with url: /blog/reboot/best-bang-your-buck-diesel-submarines-187097 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f7670201040>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))

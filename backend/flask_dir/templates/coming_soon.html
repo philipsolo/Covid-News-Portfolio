@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Road Work 🚧</title>
+</head>
+
+<body>
+
+{% extends "navbar.html" %}{% block content %}
+
+
+    <div id="content">
+        <div class="container-fluid" style="padding-left: 3%;padding-right: 3%;">
+
+
+
+            <div class="row">
+                <div class="col text-center">
+                    <img src="../static/cover2.jpg" style="margin-top: 1%" width="52%" alt="Upgrades People Upgrades"/>
+                </div>
+            </div>
+            <div class="newsletter-subscribe" style="margin-top: 4%">
+
+                <div class="intro" style="margin-top: 2%;">
+                    <h2 class="text-center">Get notified when we launch</h2>
+                    <p class="text-center">Simply add your email and you will be the first to know when features are
+                        added</p>
+                </div>
+
+                <form method="post">
+                    <div class="input-group input-group-lg" style="max-width: 300px;margin: 0 auto;">
+                        <div class="input-group-prepend"></div>
+
+                        <label for="country_input"></label>
+                        <input type="email" name="email" id="mail_input"
+                               style="background: var(--searchBar); max-width: 400px" class="form-control"
+                               placeholder="Email ..."
+                               required>
+
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit"><i class="fa fa-plane"></i></button>
+                        </div>
+
+                        <div id="not_added" class="invalid-feedback">You are already in the list?</div>
+                        <div id="added" class="valid-feedback">You're In!</div>
+                    </div>
+                </form>
+
+
+                {% if gotit == 'Request' %}
+                {% elif not gotit %}
+                    <script>
+                        document.getElementById("added").classList.add("d-block");
+                    </script>
+                {% else %}
+                    <script>
+                        document.getElementById("not_added").classList.add("d-block");
+                    </script>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+</body>
+</html>
+

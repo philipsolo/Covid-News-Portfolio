@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    :root {
+  --navHeight: 70px;
+  --sage: #D2CCA1;
+  --paleSpringBud: #DEDABA;
+  --goldCrayola: #E5C687;
+  --richBlackForeground: #0F1A20;
+  --white: #f8f8f8;
+  --black: #222;
+  --msuGreen: #2D4739;
+  --gray: #eee;
+}
+.light-theme {
+  --themeDropDownBg: var(--goldCrayola);
+  --themeIconBorderColor: var(--sage);
+  --navBg: var(--sage);
+  --navLinkHoverBg: var(--paleSpringBud);
+  --mainBg: var(--goldCrayola);
+  --fontColor: var(--black);
+}
+
+.dark-theme {
+  --themeDropDownBg: var(--msuGreen);
+  --themeIconBorderColor: var(--richBlackForeground);
+  --navBg: var(--richBlackForeground);
+  --navLinkHoverBg: var(--msuGreen);
+  --mainBg: var(--msuGreen);
+  --fontColor: var(--white);
+}
+
+* {
+  color: var(--fontColor);
+}
+
+nav {
+  background: var(--navBg);
+}
+
+nav ul li:hover {
+  background-color: var(--navLinkHoverBg);
+}
+
+main {
+  background: var(--mainBg);
+}
+</style>
+<body class="light-theme">
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <label class="switch">
+            <i class="fas fa-adjust"></i>
+            <div>
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </div>
+          </label>
+            <script>const themeSwitch = document.querySelector('input');
+
+themeSwitch.addEventListener('change', () => {
+  document.body.classList.toggle('dark-theme');
+});</script>
+
+
+        </li>
+        <li>Home</li>
+        <li>Services</li>
+        <li>Contact</li>
+        <li>About</li>
+      </ul>
+    </nav>
+  </header>
+  <main>Change My Theme</main>
+</body>
+</html>

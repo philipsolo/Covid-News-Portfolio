@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="English">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+        <title>News - Solomonidis.me</title>
+
+
+        <script>
+            function myFunction(nam) {
+                var x = document.getElementById(nam);
+
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+                document
+                    .getElementById(nam)
+                    .insertAdjacentHTML(
+                        "afterend",
+                        '<button class="btn btn-primary" type="button" disabled>\n' + '  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\n' + "  Loading...\n" + "</button>"
+                    );
+            }
+        </script>
+        <script>
+            function uncheckAll() {
+                $("input[type='checkbox']:checked").prop("checked", false);
+            }
+            $(":button").on("click", uncheckAll);
+        </script>
+    </head>
+    <body id="page-top">
+        <div id="wrapper">
+            <div class="d-flex flex-column" id="content-wrapper">
+                <div id="content">
+                    {% extends "navbar.html" %}{% block content %}
+
+                    <div class="container" style="margin-top: 12vh;">
+                        <div class="row justify-content-md-center">
+                            <!-- TradingView Widget BEGIN -->
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <div class="tradingview-widget-copyright">
+                                    <a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView
+                                </div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+                                    {
+                                        "symbols": [
+                                            {
+                                              "proName": "FOREXCOM:SPXUSD",
+                                              "title": "S&P 500"
+                                            },
+                                            {
+                                              "proName": "FOREXCOM:NSXUSD",
+                                              "title": "Nasdaq 100"
+                                            },
+                                            {
+                                              "proName": "FX_IDC:EURUSD",
+                                              "title": "EUR/USD"
+                                            },
+                                            {
+                                              "proName": "BITSTAMP:BTCUSD",
+                                              "title": "BTC/USD"
+                                            },
+                                            {
+                                              "description": "Gold(US/OZ)",
+                                              "proName": "TVC:GOLD"
+                                            },
+                                            {
+                                              "description": "EUR/GBP",
+                                              "proName": "FX:EURGBP"
+                                            }
+                                          ],
+                                          "colorTheme": "light",
+                                          "isTransparent": false,
+                                          "locale": "en"
+                                    }
+                                </script>
+                            </div>
+                            <!-- TradingView Widget END -->
+                        </div>
+
+                        {% macro art_page(key_name, start, end) %}
+                        <div class="row" style="margin-top: 2%;">
+                            {% for article_row in art_selection[key_name][start:end] | batch(3,fill_with=None) %}
+                            <div class="col-md-auto">
+                                <div class="card-body">
+                                    <form action="/news/sentiment" method="post">
+                                        <div class="card-deck" style="align-content: center;min-width: 70%;margin: auto;">
+                                            {% for article in article_row %}
+                                            <div class="card border-{{ article['type'] }}">
+                                                {% if 'source' in article %}
+                                                <div class="card-header text-muted"><strong>{{ article['source'] }}</strong> Prob: {{ article['source_mag'] }}</div>
+                                                {% endif %}
+                                                <img class="card-img-top w-80 d-block border rounded-0" style="max-width: 100%;max-height: 40vh; text-align: center;" src="{{ article['image']}}" alt="{{ article['name']|replace('_', ' ')}}" loading="lazy" />
+                                                <div class="card-body text-center">
+                                                    <h4 class="card-title">{{ article['title']|striptags}}</h4>
+                                                    <p class="card-text"><span>{{ article['summary']|striptags}}</span></p>
+                                                    <p class="card-text"><small class="text-muted">Grabbed {{ article['Time_accessed']}}</small></p>
+
+                                                    <div style="align-items: baseline;">
+                                                        <a class="btn btn-light btn-icon-split" role="button" href="{{ article['articleLink']}}" target="_blank">
+                                                            <span class="text-black-50 icon"><i class="fas fa-arrow-right"></i></span><span class="text-dark text"> More Details</span>
+                                                        </a>
+
+                                                        {% if 'sent' in article %} {% if article['sent'] == 0 %}
+                                                        <div role="alert" class="alert alert-secondary border rounded" style="margin-top: 2%">
+                                                            <span>
+                                                                <h4 class="alert-heading">Sentiment value <strong>{{ article['sent'] }}</strong></h4>
+                                                                Magnitude <strong> {{ article['sent_mag'] }}</strong>
+                                                            </span>
+                                                            <br />
+                                                            Learn <a class="alert-link" href="/news/sentiment_info">More</a>
+                                                        </div>
+                                                        {% elif article['sent'] > 0 %}
+                                                        <div role="alert" class="alert alert-success border rounded" style="margin-top: 2%">
+                                                            <span>
+                                                                <h4 class="alert-heading">Sentiment value <strong>{{ article['sent'] }}</strong></h4>
+                                                                Magnitude <strong> {{ article['sent_mag'] }}</strong>
+                                                            </span>
+                                                            <br />
+                                                            Learn <a class="alert-link" href="/news/sentiment_info">More</a>
+                                                        </div>
+                                                        {% else %}
+                                                        <div role="alert" class="alert alert-danger border rounded" style="margin-top: 2%">
+                                                            <span>
+                                                                <h4 class="alert-heading">Sentiment value <strong>{{ article['sent'] }}</strong></h4>
+                                                                Magnitude <strong> {{ article['sent_mag'] }}</strong>
+                                                            </span>
+                                                            <br />
+                                                            Learn <a class="alert-link" href="/news/sentiment_info">More</a>
+                                                        </div>
+                                                        {% endif %} {% else %} {% if article['Scrape'] == 'SIMPLE' %}
+                                                        <button
+                                                            class="btn btn-info btn-icon-split"
+                                                            id="{{ article['name']}}"
+                                                            type="submit"
+                                                            onclick="myFunction(id)"
+                                                            name="{{ article['articleLink']}}"
+                                                            data-toggle="tooltip"
+                                                            title="Analyze Article Sentiment "
+                                                        >
+                                                            <span class="text-white-50 icon"><i class="far fa-angry"></i></span><span class="text-white text">Sentiment</span>
+                                                        </button>
+                                                        {% else %}
+                                                        <button class="btn btn-info btn-icon-split" type="submit" disabled>
+                                                            <span class="text-white-50 icon"><i class="fas fa-exclamation-circle"></i></span><span class="text-white text">Not Available</span>
+                                                        </button>
+                                                        {% endif %} {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% if start == 0 %} {% if key_name == 'News' %}  {% endif %}
+                        <div class="row justify-content-md-center" style="margin-top: 2%">
+                            {% for tweet in twitter[key_name]%}
+                            <div class="col-lg-6 align-items-stretch">
+                                {{ tweet['html_content'] }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %} {% endmacro %} {% macro sent_card(color, sent, mag, key, dict) %}
+                        <div class="col-md-4 col-sm-6 align-self-center">
+                            <div class="card border-{{ color }} mb-3" style="max-width: 18rem; margin: auto">
+                                <div class="card-header"><strong class="text-{{ color }}">{{ key }}</strong> Overall Sentiment</div>
+                                <div class="card-body text-center text-{{ color }}">
+                                    <h4 class="card-title">Sentiment Value <strong>{{ sent }}</strong></h4>
+
+                                    <p class="card-text" style="color: rgb(133, 135, 150);">Magnitude <strong> {{ mag }}</strong></p>
+
+                                    <div>
+                                        <a class="btn" data-toggle="collapse" aria-expanded="false" aria-controls="{{ key }}" href="#{{ key }}-2" role="button">Click for details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapse" id="{{ key }}-2">
+                                <div class="table-responsive border rounded-0 border-{{ color }}" style="max-height: 40vh;">
+                                    <table class="table text-black  table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Source Name</th>
+                                                <th>Sent</th>
+                                                <th>Mag</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for key, value in dict.items() %} {% if key == 'all_sent' %} {% elif key == 'all_mag' %} {% else %}
+                                            <tr>
+                                                <td class="text-{{ value[2] }}"><a href="{{ value[3] }}"> {{ key|replace('_', ' ')}}</a></td>
+                                                <td class="text-{{ value[2] }}">{{ value[0] }}</td>
+                                                <td class="text-{{ value[2] }}">{{ value[1] }}</td>
+                                            </tr>
+                                            {% endif %} {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endmacro %}
+
+                        <div class="row justify-content-md-center" style="margin-top: 2%">
+                            {% for key, value in stat_dict.items() %} {% if stat_dict[key]['all_sent'] == 0 %} {{ sent_card("secondary", stat_dict[key]['all_sent'], stat_dict[key]['all_mag'],key, value) }} {% elif stat_dict[key]['all_sent']
+                            > 0 %} {{ sent_card("success", stat_dict[key]['all_sent'], stat_dict[key]['all_mag'],key, value) }} {% else%} {{ sent_card("danger", stat_dict[key]['all_sent'], stat_dict[key]['all_mag'],key, value) }} {% endif
+                            %} {% endfor %}
+                        </div>
+
+                        <div class="row justify-content-center" >
+                            <div>
+                                <ul class="nav nav-pills nav-fill text-center">
+                                    <li class="nav-item">
+                                        <a role="tab" data-toggle="pill" class="nav-link active" href="#News">News</a>
+                                    </li>
+
+                                    {% for key in news %}
+                                    <li class="nav-item">
+                                        <a role="tab" data-toggle="tab" class="nav-link" href="#{{ key }}">{{ key|replace('_', ' ') }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                            <div class="tab-content">
+                                {% for key in news %}
+                                <div class="tab-pane" role="tabpanel" id="{{ key }}">
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="{{ key }}9">
+                                            {{ art_page(key, 0, 6) }}
+                                        </div>
+
+                                        {% if art_selection[key]|length > 6 %}
+                                        <div role="tabpanel" class="tab-pane" id="{{ key }}10">
+                                            {{ art_page(key, 6, 12) }}
+                                        </div>
+                                        {% endif %} {% if art_selection[key]|length > 12 %}
+                                        <div role="tabpanel" class="tab-pane" id="{{ key }}11">
+                                            {{ art_page(key, 12, 18) }}
+                                        </div>
+                                        {% endif %} {% if art_selection[key]|length > 24 %}
+                                        <div role="tabpanel" class="tab-pane" id="{{ key }}12">
+                                            {{ art_page(key, 24, 30) }}
+                                        </div>
+                                        {% endif %} {% if art_selection[key]|length > 30 %}
+                                        <div role="tabpanel" class="tab-pane" id="{{ key }}13">
+                                            {{ art_page(key, 30, 36) }}
+                                        </div>
+                                        {% endif %} {% if art_selection[key]|length > 6 %}
+                                        <ul class="nav nav-pills nav-fill border rounded border-primary" style="margin-top: 2%">
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link active" href="#{{ key }}9">Page 1</a></li>
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link" href="#{{ key }}10">Page 2</a></li>
+                                            {% if art_selection[key]|length > 12 %}
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link" href="#{{ key }}11">Page 3</a></li>
+                                            {% endif %} {% if art_selection[key]|length > 24 %}
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link" href="#{{ key }}12">Page 4</a></li>
+                                            {% endif %} {% if art_selection[key]|length > 30 %}
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link" href="#{{ key }}13">Page 5</a></li>
+                                            {% endif %}
+                                        </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <div class="tab-pane active" role="tabpanel" id="News" >
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="tab-4">
+                                            {{ art_page("News", 0, 6) }}
+                                        </div>
+
+                                        {% if art_selection["News"]|length > 6 %}
+                                        <div role="tabpanel" class="tab-pane" id="tab-5">
+                                            {{ art_page("News", 6, 12) }}
+                                        </div>
+                                        {% endif %} {% if art_selection["News"]|length > 12 %}
+                                        <div role="tabpanel" class="tab-pane" id="tab-6">
+                                            {{ art_page("News", 12, 18) }}
+                                        </div>
+                                        {% endif %} {% if art_selection["News"]|length > 24 %}
+                                        <div role="tabpanel" class="tab-pane" id="tab-7">
+                                            {{ art_page("News", 24, 30) }}
+                                        </div>
+                                        {% endif %} {% if art_selection["News"]|length > 30 %}
+                                        <div role="tabpanel" class="tab-pane" id="tab-8">
+                                            {{ art_page("News", 30, 36) }}
+                                        </div>
+                                        {% endif %}
+
+                                        <ul class="nav nav-pills nav-fill border rounded border-primary" style="margin-top: 2%">
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link active" href="#tab-4">Page 1</a></li>
+                                            {% if art_selection["News"]|length > 6 %}
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link" href="#tab-5">Page 2</a></li>
+                                            {% endif %} {% if art_selection["News"]|length > 12 %}
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link" href="#tab-6">Page 3</a></li>
+                                            {% endif %} {% if art_selection["News"]|length > 24 %}
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link" href="#tab-7">Page 4</a></li>
+                                            {% endif %} {% if art_selection["News"]|length > 30 %}
+                                            <li class="nav-item"><a role="tab" data-toggle="pill" class="nav-link" href="#tab-8">Page 5</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <h1 class="text-center"></h1>
+                        <div class="d-flex"></div>
+
+                        <div class="row justify-content-md-center">
+                            <div class="col-lg-6 align-items-stretch">
+                                <div class="card shadow mb-4">
+                                    <div class="card">
+                                        <img class="card-img-top w-100 d-block" src="https://storage.googleapis.com/flask-stuff/Nasa.jpeg" alt="" />
+                                        <div class="card-body text-center">
+                                            {% if nasa %}
+                                            <h4 class="card-title">{{ nasa['title']}}</h4>
+                                            <p class="card-text"><span>{{ nasa['summary']}}</span></p>
+                                            <a class="btn btn-light btn-icon-split" role="button" href="{{ nasa['articleLink']}}">
+                                                <span class="text-black-50 icon"><i class="fas fa-arrow-right"></i></span><span class="text-dark text"> More Details</span>
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                                {% for link in reddit %}
+                                <div class="card shadow mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="text-primary font-weight-bold m-0">Top Reddit World News</h6>
+                                        <div class="dropdown no-arrow">
+                                            <button aria-expanded="false" class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" type="button"><i class="text-gray-400"></i></button>
+                                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                                                <p class="text-center dropdown-header">Teleport</p>
+                                                <a class="dropdown-item" role="presentation" href="{{ link['articleLink'] }}">&nbsp;Reddit Link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <span>{{ link['title'] }}</span>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">Added <strong>{{ link['Time_accessed']}}</strong></small>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center" style="border-bottom-style: solid;">
+                            <div class="col-lg-6 align-items-stretch">
+                                <div class="card shadow mb-4">
+                                    <div class="card">
+                                        <img class="card-img-top w-80 d-block " src="/backend/staticdir/static/img/Eurostat.png" alt="Eurostat" />
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title">{{ Eurostat[0]['title']}}</h4>
+                                            <p class="card-text"><span>{{ Eurostat[0]['summary']}}</span></p>
+                                            <a class="btn btn-light btn-icon-split" role="button" href="{{ Eurostat[0]['articleLink']}}">
+                                                <span class="text-black-50 icon"><i class="fas fa-arrow-right"></i></span><span class="text-dark text"> More Details</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col align-self-center">
+                                {% for link in reddit_tech %}
+                                <div class="card shadow mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h6 class="text-primary font-weight-bold m-0">Top Tech News</h6>
+                                        <div class="dropdown no-arrow">
+                                            <button aria-expanded="false" class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" type="button"><i class="fas text-gray-400"></i></button>
+                                            <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in" role="menu">
+                                                <p class="text-center dropdown-header">Teleport</p>
+                                                <a class="dropdown-item" href="{{link['articleLink']}}" role="presentation">&nbsp;Reddit Link</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <span>{{ link['title'] }}</span>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">Added <strong>{{ link['Time_accessed']}}</strong></small>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="col-md-auto" style="margin-top: 2%">
+                            <div class="jumbotron text-center">
+                                <h1>Get Email Updates daily</h1>
+                                <p>Personalize your daily/weekly update via email, get desired Covid-19 updates, specialized news and info. Tailored for your needs.</p>
+                                <p>
+                                    <a class="btn btn-light btn-icon-split" role="button">
+                                        <span class="text-black-50 icon"><i class="fas fa-arrow-right"></i></span><span class="text-dark text"> More Details</span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,302 @@
+{
+  "Times": {
+    "link": "http://feeds.feedburner.com/time/world",
+    "image": "../static/img/Times.png",
+    "Scrape": "SIMPLE"
+  },
+  "Reddit_Tech": {
+    "link": "https://reddit.com/r/TechNewsToday/.rss",
+    "image": "../static/img/Reddit.webh",
+    "Scrape": "JAVA"
+  },
+  "Data_Breaches": {
+    "link": "https://www.databreaches.net/feed/",
+    "image": "../static/img/Data_breaches.jpg",
+    "Scrape": "JAVA"
+  },
+  "National_Interest": {
+    "link": "https://nationalinterest.org/feed",
+    "image": "../static/img/National_interest.jpg",
+    "Scrape": "JAVA"
+  },
+  "The_Intercept": {
+    "link": "https://theintercept.com/feed/?lang=en",
+    "image": "../static/img/The_intercept.png",
+    "Scrape": "JAVA"
+  },
+  "Ny_Times": {
+    "link": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+    "image": "../static/img/New_york_times.png",
+    "Scrape": "SIMPLE"
+  },
+  "Euractiv": {
+    "link": "https://www.euractiv.com/feed/",
+    "image": "../static/img/Euractiv.png",
+    "Scrape": "SIMPLE"
+  },
+  "The_Conversation": {
+    "link": "https://theconversation.com/uk/articles.atom",
+    "image": "../static/img/The_conversation.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Investing": {
+    "link": "https://www.investing.com/rss/investing_news.rss",
+    "image": "../static/img/Investing.png",
+    "Scrape": "JAVA"
+  },
+  "Market_Watch": {
+    "link": "http://feeds.marketwatch.com/marketwatch/bulletins",
+    "image": "../static/img/Market_watch.png",
+    "Scrape": "SIMPLE"
+  },
+  "Defense_News": {
+    "link": "http://feeds.feedburner.com/defense-news/home",
+    "image": "../static/img/Defense_news.png",
+    "Scrape": "SIMPLE"
+  },
+  "Eurostat": {
+    "link": "https://ec.europa.eu/eurostat/en/search?p_p_id=estatsearchportlet_WAR_estatsearchportlet&p_p_lifecycle=2&p_p_state=maximized&p_p_resource_id=atom&_estatsearchportlet_WAR_estatsearchportlet_collection=dataset",
+    "image": "../static/img/Eurostat.png",
+    "Scrape": "ERROR"
+  },
+  "Statista_Stats": {
+    "link": "https://www.statista.com/rss/statistics/free",
+    "image": "../static/img/Statista.webp",
+    "Scrape": "ERROR"
+  },
+  "Statista": {
+    "link": "https://www.statista.com/rss/infographics",
+    "image": "../static/img/Statista.webp",
+    "Scrape": "ERROR"
+  },
+  "CNBC": {
+    "link": "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+    "image": "../static/img/Cnbc.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Aei": {
+    "link": "https://www.aei.org/rss",
+    "image": "../static/img/Aei.png",
+    "Scrape": "SIMPLE"
+  },
+  "Europa": {
+    "link": "https://europa.eu/newsroom/press-releases.xml_en",
+    "image": "../static/img/Europa.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "JP_Morgan": {
+    "link": "https://jpmorganchaseco.gcs-web.com/rss/news-releases.xml",
+    "image": "../static/img/Jp_morgan.png",
+    "Scrape": "ERROR"
+  },
+  "BEA": {
+    "link": "https://apps.bea.gov/rss/rss.xml",
+    "image": "../static/img/Bea.png",
+    "Scrape": "SIMPLE"
+  },
+  "Independent": {
+    "link": "http://www.independent.co.uk/news/world/rss",
+    "image": "../static/img/Independent.jpg",
+    "Scrape": "JAVA"
+  },
+  "Ieefa": {
+    "link": "https://ieefa.org/feed",
+    "image": "../static/img/Iefa.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Aljazeera": {
+    "link": "https://www.aljazeera.com/xml/rss/all.xml",
+    "image": "../static/img/Aljazeera.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Politico": {
+    "link": "http://rss.politico.com/economy.xml",
+    "image": "../static/img/Politico.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Science_Mag": {
+    "link": "http://www.sciencemag.org/rss/news_current.xml",
+    "image": "../static/img/Science_mag.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Wired": {
+    "link": "https://www.wired.com/feed/rss",
+    "image": "../static/img/Wired.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Kathimerini": {
+    "link": "https://feeds.feedburner.com/kathimerini/DJpy",
+    "image": "../static/img/Kathimerini.jpg",
+    "Scrape": "ERROR"
+  },
+  "Huff_Post": {
+    "link": "https://www.huffingtonpost.co.uk/feeds/index.xml",
+    "image": "../static/img/Huff_post.png",
+    "Scrape": "JAVA"
+  },
+  "The_Atlantic": {
+    "link": "https://www.theatlantic.com/feed/all/",
+    "image": "../static/img/Huff_post.png",
+    "Scrape": "SIMPLE"
+  },
+  "Epi": {
+    "link": "https://www.epi.org/feed/",
+    "image": "../static/img/Politico.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Rferl": {
+    "link": "https://www.rferl.org/api/z$qimetkiy",
+    "image": "../static/img/Rferl.png",
+    "Scrape": "SIMPLE"
+  },
+  "Science_Alert": {
+    "link": "https://feeds.feedburner.com/sciencealert-latestnews",
+    "image": "../static/img/Science_alert.png",
+    "Scrape": "SIMPLE"
+  },
+  "The_Banker": {
+    "link": "https://www.thebanker.com/layout/set/rss/World",
+    "image": "../static/img/The_banker.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Guardian": {
+    "link": "https://www.theguardian.com/world/rss",
+    "image": "../static/img/Guardian.png",
+    "Scrape": "SIMPLE"
+  },
+  "Reddit_News": {
+    "link": "https://www.reddit.com/r/worldnews/.rss",
+    "image": "../static/img/Reddit.jpeg",
+    "Scrape": "JAVA"
+  },
+  "Reddit_Economics": {
+    "link": "https://www.reddit.com/r/Economics/.rss",
+    "image": "../static/img/Reddit.jpeg",
+    "Scrape": "JAVA"
+  },
+  "Reuters": {
+    "link": "https://news.google.com/rss/search?q=when:24h+allinurl:reuters.com&ceid=US:en&hl=en-US&gl=US",
+    "image": "../static/img/Reuters.jfif",
+    "Scrape": "SIMPLE"
+  },
+  "BBC": {
+    "link": "http://feeds.bbci.co.uk/news/rss.xml",
+    "image": "../static/img/BBC.svg",
+    "Scrape": "SIMPLE"
+  },
+  "Economist": {
+    "link": "https://www.economist.com/briefing/rss.xml",
+    "image": "../static/img/Economist.jpeg",
+    "Scrape": "SIMPLE"
+  },
+  "FT": {
+    "link": "https://www.ft.com/news-feed",
+    "image": "../static/img/Ft.png",
+    "Scrape": "ERROR"
+  },
+  "DW": {
+    "link": "http://rss.dw.com/rdf/rss-en-all",
+    "image": "../static/img/Dw.png",
+    "Scrape": "JAVA"
+  },
+  "Beautiful_News_Daily": {
+    "link": "http://feeds.feedburner.com/beautifulnewsdaily",
+    "image": "../static/img/Beautiful_news_daily.png",
+    "Scrape": "ERROR"
+  },
+  "Ecdc": {
+    "link": "https://www.ecdc.europa.eu/en/taxonomy/term/2942/feed",
+    "image": "../static/img/Ecdc.png",
+    "Scrape": "SIMPLE"
+  },
+  "Straitstimes": {
+    "link": "https://www.straitstimes.com/news/world/rss.xml",
+    "image": "../static/img/Straitstimes.svg",
+    "Scrape": "JAVA"
+  },
+  "OECD": {
+    "link": "http://www.oecd.org/index.xml",
+    "image": "../static/img/Oecd.jpg",
+    "Scrape": "JAVA"
+  },
+  "OECD_greece": {
+    "link": "http://www.oecd.org/greece/index.xml",
+    "image": "../static/img/Oecd.jpg",
+    "Scrape": "ERROR"
+  },
+  "Propublica": {
+    "link": "http://feeds.propublica.org/propublica/main",
+    "image": "../static/img/Propublica.webp",
+    "Scrape": "SIMPLE"
+  },
+  "Scientific_American": {
+    "link": "http://rss.sciam.com/ScientificAmerican-Global",
+    "image": "../static/img/Scientific_american.png",
+    "Scrape": "SIMPLE"
+  },
+  "Ahvalnews": {
+    "link": "https://ahvalnews.com/feeds",
+    "image": "../static/img/Ahvalnews.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Voxeu": {
+    "link": "http://voxeu.org/feed/recent/rss.xml",
+    "image": "../static/img/Voxeu.png",
+    "Scrape": "SIMPLE"
+  },
+  "Truthout": {
+    "link": "https://truthout.org/latest/feed/",
+    "image": "../static/img/Truthout.png",
+    "Scrape": "JAVA"
+  },
+  "Medrxiv": {
+    "link": "http://connect.medrxiv.org/medrxiv_xml.php?subject=all",
+    "image": "../static/img/Medrxiv.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "CDC": {
+    "link": "https://tools.cdc.gov/api/v2/resources/media/132608.rss",
+    "image": "../static/img/Cdc.png",
+    "Scrape": "SIMPLE"
+  },
+  "Ecfr": {
+    "link": "https://ecfr.eu/feed/",
+    "image": "../static/img/Ecfr.png",
+    "Scrape": "SIMPLE"
+  },
+  "IMF": {
+    "link": "https://www.imf.org/en/publications/rss?language=eng&series=Global%20Financial%20Stability%20Report",
+    "image": "../static/img/imf.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "EUP": {
+    "link": "http://www.assembly.coe.int/rss/rss.aspx?cat=677&size=20&title=Parliamentary+Assembly+of+the+Council+of+Europe+(PACE)%3a+COVID-19&rssdesc=COVID-19&lang=en-gb",
+    "image": "../static/img/Eup.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Chatham_House": {
+    "link": "http://feeds.feedburner.com/ChathamHouse-Europe",
+    "image": "../static/img/Chatham_House.png",
+    "Scrape": "SIMPLE"
+  },
+  "UN": {
+    "link": "https://news.un.org/feed/subscribe/en/news/all/rss.xml",
+    "image": "../static/img/Un.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Money_Control": {
+    "link": "https://www.moneycontrol.com/rss/MCtopnews.xml",
+    "image": "../static/img/Un.jpg",
+    "Scrape": "SIMPLE"
+  },
+  "Fox_News": {
+    "link": "http://feeds.foxnews.com/foxnews/latest",
+    "image": "../static/img/Fox_news.png",
+    "Scrape": "SIMPLE"
+  },
+  "CNN": {
+    "link": "http://rss.cnn.com/rss/edition.rss",
+    "image": "../static/img/Cnn.png",
+    "Scrape": "SIMPLE"
+  }
+}

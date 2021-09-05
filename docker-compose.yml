@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  db:
+      image: mysql:5.7
+      restart: always
+      environment:
+        MYSQL_DATABASE: 'website'
+        MYSQL_ROOT_PASSWORD: '<INSERT-PASSWORD>'
+
+      volumes:
+        - ./db/data.sql:/docker-entrypoint-initdb.d/data.sql
+      ports:
+        - '3306:3306'
+      expose:
+        - '3306'
+

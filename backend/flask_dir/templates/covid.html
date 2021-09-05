@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="English">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<meta name="color-scheme" content="dark light">
+    <title>💉  Covid-19</title>
+</head>
+
+<body>
+{% extends "navbar.html" %}
+{% block content %}
+
+    <script src="../static/js/chart.min.js"></script>
+    <script type="text/javascript" src="../static/js/covid_data.js"></script>
+
+    <script>
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+
+
+        $(function() {
+            $('#country_form').on('submit', function(e) {
+                js = $("#country_form").serializeArray()
+                    $('#country_input').addClass('is-valid')
+                    change_country(js[0].value, 'add_country')
+                e.preventDefault();
+            });
+        });
+
+        $(function() {
+            $('#dates_change').on('submit', function(e) {
+                var js = $("#dates_change").serializeArray()
+                console.log(js[0].value,js[1].value)
+                change_dates(js)
+                e.preventDefault();
+
+            });
+        });
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#country_input').removeClass('is-invalid')
+            get_our_world()
+            get_daily()
+            get_our_world_tests()
+        });
+
+        $(window).on("load", function () {
+            jQuery("#loadee").fadeOut(3000).remove();
+            document.getElementById("hider").style.display = "block";
+        });
+    </script>
+
+    <div class="loadingio-spinner-pulse-ebjm01oud7 centered" id="loadee">
+        <div class="ldio-8o5dc9lqh2j">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+    <div id="hider" style="display: none;">
+        <div id="page-top">
+            <div id="wrapper">
+                <div class="d-flex flex-column" id="content-wrapper">
+                    <div id="content">
+
+
+                        {% macro info_card(name,color,icon,id) %}
+                            <div class="col-md-6 col-xl-3 mb-4">
+                                <div class="card shadow  border-left-{{ color }} py-2" style="opacity: 80%;">
+                                    <div class="card-body">
+                                        <div class="row align-items-center no-gutters">
+                                            <div class="col mr-2">
+                                                <div class="text text-{{ color }} font-weight-bold text-xl mb-1">
+                                                    <span>{{ name }}</span>
+                                                </div>
+                                                <div class="text font-weight-bold h5 mb-0" style="color: var(--Text)">
+                                                    <span id="{{ id }}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas {{ icon }} fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endmacro %}
+
+                        <div class="container-fluid text-left" style="padding-left: 3%;padding-right: 3%;margin-top: 2%;">
+                            <div class="row">
+                                {{ info_card('Total Cases Per Million','primary','fa-suitcase-rolling','total_cases_per_million') }}
+                                {{ info_card('Total Deaths Per Million','danger','fa-skull-crossbones','total_deaths_per_million') }}
+                                {{ info_card('Total Vaccinations','success','fa-syringe','total_vaccinations') }}
+                                {{ info_card('Vaccinations Percent','warning','fa-syringe','total_vaccinations_per_hundred') }}
+                            </div>
+                            <div class="col my-auto">
+                                    <div class="card shadow mb-4" style="max-width: 600px;margin: 0 auto;">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                            <h6 class="font-weight-bold m-0">Modify Countries</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row no-gutters">
+                                                <div class="col">
+
+
+                                                    <form  id="country_form" name="country_check" method="post">
+                                                        <div class="input-group input-group-lg" style="width: 80%;margin: 0 auto;">
+                                                            <div class="input-group-prepend"></div>
+
+
+                                                            <label for="country_input"></label>
+                                                            <input type="text" id="country_input" list="countries_list" class="form-control" style="background: var(--searchBar)" name="country_name" placeholder="Add Country ..." maxlength="20" >
+
+                                                            <datalist id="countries_list" style="overflow-y: auto">
+                                                                        {% for country in all_countries %}
+                                                                            <option value="{{ country }}">
+                                                                        {% endfor %}
+                                                                    </datalist>
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search"></i></button>
+                                                            </div>
+
+                                                            <div class="invalid-feedback">Couldn't Find the Country :(</div>
+                                                            <div class="valid-feedback">Nice Country!</div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                            <div class="row no-gutters text-center">
+                                                <div class="col" style="margin-top: 2%;" id="country_but">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="row align-items-center">
+                                <div class="col-lg-12" >
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header d-flex justify-content-between" >
+
+
+                                            <h5><a  href="https://github.com/CSSEGISandData/COVID-19">Daily Cases & Deaths</a></h5>
+
+                                            <div class="row">
+
+                                                <a class="btn btn-primary mr-2" id="date_collapse" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" href="#collapse-1" role="button">Change Dates</a>
+
+                                                 <i class="fas fa-info-circle ml-1 mt-1" data-toggle="tooltip" data-html="true" title="John's Hopkins<br><em>Cases: </em><b>Daily Confirmed Cases</b> <br> <em>Deaths: </em> <b>Daily Confirmed Deaths</b>"></i>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="collapse mr-2" id="collapse-1">
+                                            <div class="col-auto">
+
+                                                <form id="dates_change" name="change_dates" method="post">
+                                                    <div class="form-group row justify-content-end mt-2" style="margin-bottom: 0;">
+                                                        <label for="from_date" class="col-form-label">From</label>
+                                                        <div class="col-auto">
+                                                            <input class="form-control" type="date" value="" name="from" id="from_date" max="2022-01-01" min="2019-01-01" style="background: var(--searchBar);color: var(--Text);">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row justify-content-end mt-2" style="margin-bottom: 0;">
+                                                        <label for="to_date" class="col-form-label">To</label>
+                                                        <div class="col-auto">
+                                                            <input class="form-control" type="date" value="" name="to" id="to_date" max="2022-01-01" min="2019-01-01" style="background: var(--searchBar);color: var(--Text);">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row justify-content-end mt-2" style="margin-bottom: 0;">
+                                                        <div class="col-auto">
+                                                            <button type="submit" class="btn btn-primary"  data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1" href="#collapse-1">Search</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card-body">
+                                            <div class="chart-area" id="line_chart_loader" style="height: 600px; width: 100%;">
+                                                <div class="row justify-content-center">
+                                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status"></div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header d-flex justify-content-between align-items-center" >
+
+                                             <h5><a  href="https://github.com/owid/covid-19-data/tree/master/public/data">Test Stats</a></h5>
+                                            <i class="fas fa-info-circle" data-toggle="tooltip" data-html="true" title="OECD, Our world in data <br><em>Daily Tests: </em><b>Daily change in cumulative total</b> <br> <em>Daily Test per new Case: </em> <b>daily number of tests for each new confirmed case</b>"></i>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="chart-area" id="tests_line_chart" style="height: 500px; width: 100%;">
+
+                                                <div class="row justify-content-center">
+                                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="col my-auto">
+                                    <div class="card shadow mb-4" >
+                                        <div class="card-body">
+                                            <span><strong>Info & Tips:</strong></span>
+                                            <p>- Remove a country by clicking its name within the "Modify Countries" window</p>
+                                            <p>- Click on the country label, to single it out from the rest</p>
+                                            <p>- Note Data is continuously scraped, but some institutions delay release of information</p>
+                                            <p>- For Quick single country comparison type <a href="https://solomonidis.me/Norway">https://solomonidis.me/Norway</a></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header d-flex justify-content-between" >
+                                             <h5><a  href="https://github.com/owid/covid-19-data/tree/master/public/data">Country Statistics</a></h5>
+
+                                            <i class="fas fa-info-circle" data-toggle="tooltip" data-html="true" title="Our World In Data & OECD<br><em>Hospital Beds per Thousand: </em><b>Total beds divided by country pop </b> <br> <em>Aged 70 Older: </em> <b>Share of the population that is 70 years and older in 2015</b><br> <em>Median age: </em> <b>Median age of the population, UN projection for 2020</b>"></i></h6>
+
+                                        </div>
+
+                                        <div class="card-body" style="padding: 0;">
+
+                                            <div class="table-responsive table-borderless">
+                                                <table class="table table-striped table-bordered table-hover" style="margin-bottom: 0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Country</th>
+                                                            <th>Hospital Beds Per Thousand</th>
+                                                            <th>% Aged 70 Older</th>
+                                                            <th>Median Age</th>
+                                                            <th>Population</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody id="tbody_world_data_info">
+                                                    </tbody>
+                                                </table>
+                                                <div class="row justify-content-center" id="table_spinner">
+                                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header d-flex justify-content-between align-items-center" >
+
+                                            <h5><a  href="https://github.com/owid/covid-19-data/tree/master/public/data">Stats Per Million Pop</a></h5>
+
+
+                                            <i class="fas fa-info-circle" data-toggle="tooltip" data-html="true" title="Our world in data & OECD <br><em>Cases per Million: </em><b>Total tests conducted by population million </b> <br> <em>Total Deaths per Million: </em> <b>Deaths by Covid-19 by Million</b><br> <em>GDP per Capita: </em> <b>Gross Domestic Product (GDP) per capita (per person).Division of total GDP (see definition of GDP) by the population</b>"></i></h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="chart-area" id="bar_chart_area" style="height: 500px; width: 100%;">
+
+                                                <div class="row justify-content-center">
+                                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header d-flex justify-content-between align-items-center">
+                                                        <h5><a  href="https://www.ecdc.europa.eu/en">Vaccination Stats</a></h5>
+
+                                            <i class="fas fa-info-circle" data-toggle="tooltip" data-html="true" title="Our World In Data & OECD<br><em>People Fully Vaccinated Percent: </em><b>Total number of COVID-19 vaccination doses administered per 100 people in the total population</b> <br> <em>People Vaccinated Percent: </em> <b>  Total number of people who received at least one vaccine dose per 100 people<br> </b>  <em>Extreme Poverty: </em> <b> 	Share of the population living in extreme poverty, most recent year available since 2010</b>"></i></h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="chart-area" id="bar_chart_area_horiz" style="height: 500px; width: 100%;">
+
+                                                <div class="row justify-content-center">
+                                                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id=image_loc style="display:none"> <img src="https://europe-west2-chrome-octane-305110.cloudfunctions.net/function-1?ser" height="0px" width="0px"/></div>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="../static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="../static/fonts/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main_stuff.css') }}">
+    <title>Navbar</title>
+</head>
+
+<body id="theme" class="dark-theme">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+<script>$(document).ready(function () {
+    $('li.active').removeClass('active');
+    $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+});</script>
+
+<nav class="navbar  navbar-light navbar-expand-md text-monospace" style="border-bottom-style: solid;
+border-bottom-color: var(--navBottom);background: var(--navBack)">
+    <div class="container-fluid">
+
+        <div class="form-group my-auto">
+            <i class="far fa-moon fa-2x"></i>
+            <div class="custom-control custom-control-inline custom-switch custom-switch-md"
+                 style="margin-right: 0.4rem;">
+                <input type="checkbox" class="custom-control-input" onclick="change_theme()" id="formCheck-1"/>
+                <label class="custom-control-label" for="formCheck-1"></label>
+            </div>
+            <i class="fas fa-sun mr-1 fa-2x"></i>
+        </div>
+
+        <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"
+                style="background: var(--navToggler)"><span
+                class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+
+
+        <div class="collapse navbar-collapse " id="navcol-1">
+
+            <ul class="navbar-nav">
+                <li class="nav-item ml-2"><a class="nav-link active" href="/" style="color:var(--navText);">Covid-19</a>
+                </li>
+                <li class="nav-item ml-2"><a class="nav-link" href="/coming_soon" style="color:var(--navText);">News</a>
+                </li>
+                <li class="nav-item ml-2"><a class="nav-link" href="/blog"
+                                             style="color:var(--navText);">Blog</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+
+
+<script>
+    if (!localStorage.getItem('theme')) {
+        localStorage.setItem('theme', 'dark-theme');
+    } else document.body.className = localStorage.getItem('theme')
+
+
+    if ($('body').hasClass('light-theme')) {
+        $('#formCheck-1').prop("checked", true)
+    } else {
+        $('#formCheck-1').prop("checked", false)
+    }
+
+
+    function change_theme() {
+
+        var isChecked = document.getElementById("formCheck-1").checked
+
+        if (isChecked) {
+            document.body.className = 'light-theme'
+            localStorage.setItem('theme', 'light-theme');
+        } else {
+            document.body.className = 'dark-theme'
+            localStorage.setItem('theme', 'dark-theme');
+
+        }
+
+    }
+</script>
+
+{% block content %}{% endblock %}
+
+
+<footer class="sticky-footer">
+    <div class="container my-auto">
+        <div class="text-center my-auto copyright"><span>Copyright © Solomonidis 2021</span></div>
+    </div>
+</footer>
+
+
+</body>
+</html>
